@@ -1,4 +1,4 @@
-body, header, footer, ul, li
+body, header, footer, h1, p, ul, li
   margin: 0
   padding: 0
   line-height: 1.0
@@ -10,8 +10,47 @@ html
 body
   font-size: 1.6rem
   background: #EEE
+  color: #666
 
-ul
+header.site-header
+  padding: 1rem
+
+  h1
+    font-size: 2rem
+    font-weight: normal
+
+section.preview
+  text-align: center
+
+footer.site-footer
+  position: absolute
+  right: 1rem
+  bottom: 1rem
+
+  p
+    font-weight: normal
+
+ul.usage-selector
+  padding: 1rem
+
+  li
+    display: inline-block
+
+    & + li
+      margin-left: 1rem
+
+    label
+      display: block
+
+      input
+        display: none
+      
+      svg
+        width: auto
+        height: 10rem
+        border-radius: 0.5rem
+
+ul.pattern-selector
   padding: 1rem
 
   li
@@ -21,9 +60,6 @@ ul
       display: block
       padding: 1rem
       background: #FFF
-
-      & + label
-        margin-left: 1rem
 
       &.prime
         background: hsl(345, 100%, 37%)
@@ -43,12 +79,9 @@ ul
 
       input
         display: none
-    
+      
     &:first-child > label
       border-radius: 0.5rem 0 0 0.5rem
 
     &:last-child > label
       border-radius: 0 0.5rem 0.5rem 0
-
-svg
-  border-radius: 0%
