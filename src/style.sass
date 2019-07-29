@@ -1,0 +1,54 @@
+body, header, footer, ul, li
+  margin: 0
+  padding: 0
+  line-height: 1.0
+
+html
+  font-size: 62.5%
+  font-family: "source sans pro", sans-serif
+
+body
+  font-size: 1.6rem
+  background: #EEE
+
+ul
+  padding: 1rem
+
+  li
+    display: inline-block
+
+    label
+      display: block
+      padding: 1rem
+      background: #FFF
+
+      & + label
+        margin-left: 1rem
+
+      &.prime
+        background: hsl(345, 100%, 37%)
+        color: #FFF
+
+      &.option
+        background: #FFF
+        color: hsl(345, 100%, 37%)
+
+      &.summer
+        background: #60B5CC
+        color: #FFF
+
+      &.elm
+        background: #FFF
+        color: #60B5CC
+
+      input
+        display: none
+    
+    &:first-child > label
+      border-radius: 0.5rem 0 0 0.5rem
+
+    &:last-child > label
+      border-radius: 0 0.5rem 0.5rem 0
+
+svg
+  border-radius: 0%
