@@ -1,7 +1,7 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, footer, h1, header, img, input, label, li, node, p, section, text, ul)
+import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node, p, section, text, ul)
 import Html.Attributes exposing (checked, class, name, src, type_, value)
 import Html.Events.Extra exposing (onChange)
 import LogoImage exposing (LogoImage, Pattern(..), Usage(..), svgBanner, svgIcon, svgLogo)
@@ -95,9 +95,11 @@ view model =
         [ siteHeader
         , node "main"
             []
-            [ viewUsageSelector model
-            , viewPatternSelector
-            , viewPreview model
+            [ viewPreview model
+            , nav []
+                [ viewPatternSelector
+                , viewUsageSelector model
+                ]
             ]
         , siteFooter
         ]
