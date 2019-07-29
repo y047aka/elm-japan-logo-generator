@@ -1,10 +1,10 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, img, input, label, li, node, text, ul)
+import Html exposing (Html, footer, h1, header, img, input, label, li, node, p, section, text, ul)
 import Html.Attributes exposing (checked, class, name, src, type_, value)
 import Html.Events.Extra exposing (onChange)
-import LogoImage exposing (LogoImage, Pattern(..), Usage(..), elmJapanLogo)
+import LogoImage exposing (LogoImage, Pattern(..), Usage(..), svgBanner, svgIcon, svgLogo)
 
 
 main : Program () Model Msg
@@ -92,19 +92,46 @@ view : Model -> Html Msg
 view model =
     node "body"
         []
-        [ viewUsageSelector
-        , viewPatternSelector
-        , elmJapanLogo model
+        [ siteHeader
+        , node "main"
+            []
+            [ viewUsageSelector model
+            , viewPatternSelector
+            , viewPreview model
+            ]
+        , siteFooter
         ]
 
 
-viewUsageSelector : Html Msg
-viewUsageSelector =
+siteHeader : Html Msg
+siteHeader =
+    header [ class "site-header" ]
+        [ h1 [] [ text "Elm Japan Logo Generator" ]
+        ]
+
+
+viewPreview : Model -> Html Msg
+viewPreview model =
+    section [ class "preview" ]
+        [ case model.usage of
+            Icon ->
+                svgIcon model
+
+            Logo ->
+                svgLogo model
+
+            Connpass ->
+                svgBanner model
+        ]
+
+
+viewUsageSelector : Model -> Html Msg
+viewUsageSelector model =
     let
         options =
-            [ { value = "icon", text = "Icon" }
-            , { value = "logo", text = "Logo" }
-            , { value = "connpass", text = "Connpass" }
+            [ { value = "icon", svg = svgIcon model }
+            , { value = "logo", svg = svgLogo model }
+            , { value = "connpass", svg = svgBanner model }
             ]
 
         listItem option =
@@ -117,11 +144,11 @@ viewUsageSelector =
                         , onChange UsageChanged
                         ]
                         []
-                    , text option.text
+                    , option.svg
                     ]
                 ]
     in
-    ul [] (List.map listItem options)
+    ul [ class "usage-selector" ] (List.map listItem options)
 
 
 viewPatternSelector : Html Msg
@@ -148,4 +175,11 @@ viewPatternSelector =
                     ]
                 ]
     in
-    ul [] (List.map listItem options)
+    ul [ class "pattern-selector" ] (List.map listItem options)
+
+
+siteFooter : Html Msg
+siteFooter =
+    footer [ class "site-footer" ]
+        [ p [ class "copyright" ] [ text "© 2019 y047aka" ]
+        ]
