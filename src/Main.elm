@@ -30,7 +30,7 @@ type alias Model =
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( { usage = Icon
-      , pattern = Elm
+      , pattern = Original
       }
     , Cmd.none
     )
@@ -69,7 +69,7 @@ update msg model =
         PatternChanged value ->
             case value of
                 "original" ->
-                    ( { model | pattern = Elm }, Cmd.none )
+                    ( { model | pattern = Original }, Cmd.none )
 
                 "new" ->
                     ( { model | pattern = Custom "rgb(18, 147, 216)" "#FFF" }, Cmd.none )

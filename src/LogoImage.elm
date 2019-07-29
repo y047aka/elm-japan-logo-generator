@@ -22,7 +22,7 @@ type Usage
 
 
 type Pattern
-    = Elm
+    = Original
     | Custom String String
 
 
@@ -48,7 +48,7 @@ japanArchipelago preference =
 
         strokeColor =
             case preference.pattern of
-                Elm ->
+                Original ->
                     "#FFF"
 
                 Custom strColor fillColor ->
@@ -56,7 +56,7 @@ japanArchipelago preference =
 
         colors =
             case preference.pattern of
-                Elm ->
+                Original ->
                     { blue = "#60B5CC"
                     , green = "#7FD13B"
                     , navy = "#5A6378"
@@ -106,7 +106,7 @@ svgIcon preference =
 
         backgroundColor =
             case preference.pattern of
-                Elm ->
+                Original ->
                     "#FFF"
 
                 Custom bgColor fillColor ->
@@ -138,7 +138,7 @@ svgLogo preference =
 
         backgroundColor =
             case preference.pattern of
-                Elm ->
+                Original ->
                     "#FFF"
 
                 Custom bgColor fillColor ->
@@ -146,7 +146,7 @@ svgLogo preference =
 
         colors =
             case preference.pattern of
-                Elm ->
+                Original ->
                     { blue = "#60B5CC"
                     , green = "#7FD13B"
                     , navy = "#5A6378"
@@ -188,7 +188,7 @@ svgBanner preference =
 
         backgroundColor =
             case preference.pattern of
-                Elm ->
+                Original ->
                     "#FFF"
 
                 Custom bgColor fillColor ->
@@ -196,7 +196,7 @@ svgBanner preference =
 
         colors =
             case preference.pattern of
-                Elm ->
+                Original ->
                     { blue = "#60B5CC"
                     , green = "#7FD13B"
                     , navy = "#5A6378"
