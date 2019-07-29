@@ -30,7 +30,7 @@ type alias Model =
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( { usage = Icon
-      , pattern = Custom "hsl(345, 100%, 37%)" "#FFF"
+      , pattern = Elm
       }
     , Cmd.none
     )
@@ -68,17 +68,17 @@ update msg model =
 
         PatternChanged value ->
             case value of
-                "elm" ->
+                "original" ->
                     ( { model | pattern = Elm }, Cmd.none )
+
+                "new" ->
+                    ( { model | pattern = Custom "rgb(18, 147, 216)" "#FFF" }, Cmd.none )
 
                 "prime" ->
                     ( { model | pattern = Custom "hsl(345, 100%, 37%)" "#FFF" }, Cmd.none )
 
                 "option" ->
                     ( { model | pattern = Custom "#FFF" "hsl(345, 100%, 37%)" }, Cmd.none )
-
-                "summer" ->
-                    ( { model | pattern = Custom "#60B5CC" "#FFF" }, Cmd.none )
 
                 _ ->
                     ( model, Cmd.none )
@@ -157,10 +157,10 @@ viewPatternSelector : Html Msg
 viewPatternSelector =
     let
         options =
-            [ { value = "prime", text = "Prime" }
+            [ { value = "new", text = "New" }
+            , { value = "original", text = "Original" }
+            , { value = "prime", text = "Prime" }
             , { value = "option", text = "Option" }
-            , { value = "summer", text = "Summer" }
-            , { value = "elm", text = "Elm" }
             ]
 
         listItem option =
