@@ -62,6 +62,9 @@ section.update-msgs
       li
         display: inline-block
 
+        & + li
+          margin-left: 1rem
+
         label
           display: block
           width: 7rem
@@ -71,6 +74,7 @@ section.update-msgs
           text-align: center
           font-weight: 600
           background: #FFF
+          border-radius: 0.5rem
 
           &.original
             background: #FFF
@@ -94,12 +98,6 @@ section.update-msgs
 
           input
             display: none
-          
-        &:first-child > label
-          border-radius: 0.5rem 0 0 0.5rem
-
-        &:last-child > label
-          border-radius: 0 0.5rem 0.5rem 0
 
 footer.site-footer
   position: absolute

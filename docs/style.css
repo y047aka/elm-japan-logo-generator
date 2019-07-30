@@ -65,6 +65,9 @@ section.update-msgs nav ul.usage-selector li label svg {
 section.update-msgs nav ul.pattern-selector li {
   display: inline-block;
 }
+section.update-msgs nav ul.pattern-selector li + li {
+  margin-left: 1rem;
+}
 section.update-msgs nav ul.pattern-selector li label {
   display: block;
   width: 7rem;
@@ -74,6 +77,7 @@ section.update-msgs nav ul.pattern-selector li label {
   text-align: center;
   font-weight: 600;
   background: #FFF;
+  border-radius: 0.5rem;
 }
 section.update-msgs nav ul.pattern-selector li label.original {
   background: #FFF;
@@ -97,12 +101,6 @@ section.update-msgs nav ul.pattern-selector li label.summer {
 }
 section.update-msgs nav ul.pattern-selector li label input {
   display: none;
-}
-section.update-msgs nav ul.pattern-selector li:first-child > label {
-  border-radius: 0.5rem 0 0 0.5rem;
-}
-section.update-msgs nav ul.pattern-selector li:last-child > label {
-  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 footer.site-footer {
