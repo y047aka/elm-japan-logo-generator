@@ -1,0 +1,110 @@
+body, header, footer, h1, p, ul, li {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "source sans pro", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  background: #EEE;
+  color: #666;
+}
+
+main {
+  padding: 0 2.5%;
+}
+
+header.site-header {
+  padding: 2rem 2.5%;
+}
+header.site-header h1 {
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+section.preview {
+  padding: 1rem 0 3rem;
+  text-align: center;
+  border-bottom: solid 0.1rem #999;
+}
+
+nav {
+  display: grid;
+  padding: 3rem 1rem;
+  grid-auto-flow: column;
+  justify-content: center;
+  column-gap: 5rem;
+}
+nav ul.usage-selector li {
+  display: inline-block;
+}
+nav ul.usage-selector li + li {
+  margin-left: 1rem;
+}
+nav ul.usage-selector li label {
+  display: block;
+}
+nav ul.usage-selector li label input {
+  display: none;
+}
+nav ul.usage-selector li label svg {
+  width: auto;
+  height: 9.5rem;
+  border-radius: 0.5rem;
+}
+nav ul.pattern-selector li {
+  display: inline-block;
+}
+nav ul.pattern-selector li label {
+  display: block;
+  width: 7rem;
+  height: 9.5rem;
+  box-sizing: border-box;
+  padding: 4rem 0;
+  text-align: center;
+  font-weight: 600;
+  background: #FFF;
+}
+nav ul.pattern-selector li label.original {
+  background: #FFF;
+  color: #60B5CC;
+}
+nav ul.pattern-selector li label.new {
+  background: #1293d8;
+  color: #FFF;
+}
+nav ul.pattern-selector li label.prime {
+  background: #bd002f;
+  color: #FFF;
+}
+nav ul.pattern-selector li label.option {
+  background: #FFF;
+  color: #bd002f;
+}
+nav ul.pattern-selector li label.summer {
+  background: #60B5CC;
+  color: #FFF;
+}
+nav ul.pattern-selector li label input {
+  display: none;
+}
+nav ul.pattern-selector li:first-child > label {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+nav ul.pattern-selector li:last-child > label {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+footer.site-footer {
+  position: absolute;
+  right: 2.5%;
+  bottom: 2rem;
+}
+footer.site-footer p {
+  font-weight: normal;
+}
