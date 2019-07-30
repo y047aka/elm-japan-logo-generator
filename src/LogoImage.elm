@@ -11,6 +11,7 @@ import Svg.Attributes exposing (fill, fontFamily, fontSize, fontWeight, height, 
 
 type alias Preference =
     { event : Event
+    , subtitle : String
     , usage : Usage
     , pattern : Pattern
     }
@@ -187,7 +188,7 @@ svgLogo preference =
 
                 MokuMoku ->
                     text_ [ x "320", y "300", fontSize "112" ] [ text "Moku*2" ]
-            , text_ [ x "327", y "340", fontSize "35" ] [ text "in Summer" ]
+            , text_ [ x "327", y "340", fontSize "35" ] [ text preference.subtitle ]
             ]
         ]
 
@@ -245,8 +246,6 @@ svgBanner preference =
 
                 MokuMoku ->
                     text_ [ x "440", y "160", fontSize "103" ] [ text "Moku*2" ]
-            , text_ [ x "447", y "195", fontSize "30" ] [ text "in Summer" ]
-
-            -- , text_ [ x "447", y "195", fontSize "30" ] [ text "in Kobe" ]
+            , text_ [ x "447", y "195", fontSize "30" ] [ text preference.subtitle ]
             ]
         ]

@@ -3,6 +3,7 @@ module Main exposing (main)
 import Browser
 import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node, p, section, text, ul)
 import Html.Attributes exposing (checked, class, name, src, type_, value)
+import Html.Events exposing (onInput)
 import Html.Events.Extra exposing (onChange)
 import LogoImage exposing (Event(..), Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
@@ -23,6 +24,7 @@ main =
 
 type alias Model =
     { event : Event
+    , subtitle : String
     , usage : Usage
     , pattern : Pattern
     }
@@ -31,6 +33,7 @@ type alias Model =
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( { event = Meetup
+      , subtitle = "in Summer"
       , usage = Logo
       , pattern = Original
       }
@@ -44,6 +47,7 @@ init _ =
 
 type Msg
     = EventChanged String
+    | EventInInput String
     | PatternChanged String
     | UsageChanged String
 
@@ -64,6 +68,9 @@ update msg model =
 
                 _ ->
                     ( model, Cmd.none )
+
+        EventInInput value ->
+            ( { model | subtitle = value }, Cmd.none )
 
         UsageChanged value ->
             case value of
@@ -113,6 +120,10 @@ view model =
                 [ nav []
                     [ h1 [] [ text "Event" ]
                     , viewEventSelector model
+                    ]
+                , nav []
+                    [ h1 [] [ text "Subtitle" ]
+                    , viewSubtitleForm model
                     ]
                 , nav []
                     [ h1 [] [ text "Theme" ]
@@ -174,6 +185,22 @@ viewEventSelector model =
                 ]
     in
     ul [ class "event-selector" ] (List.map listItem options)
+
+
+viewSubtitleForm : Model -> Html Msg
+viewSubtitleForm model =
+    ul [ class "in-form" ]
+        [ li []
+            [ label []
+                [ input
+                    [ type_ "text"
+                    , value model.subtitle
+                    , onInput EventInInput
+                    ]
+                    []
+                ]
+            ]
+        ]
 
 
 viewUsageSelector : Model -> Html Msg

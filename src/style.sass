@@ -49,9 +49,29 @@ section.update-msgs
 
         label
           display: block
+          cursor: pointer
 
-          input
+          input[type="text"]
+            display: block
+            width: 13rem
+            height: 9rem
+            padding: 1rem 1rem
+            box-sizing: border-box
+            font-size: 1.6rem
+            font-weight: 600
+            outline: none
+            color: #666
+            border: none
+            border-radius: 0.5rem
+
+          input[type="radio"]
             display: none
+
+          svg
+            width: auto
+            height: 9rem
+            cursor: pointer
+            border-radius: 0.5rem
 
     ul.event-selector, ul.pattern-selector
       label
@@ -85,13 +105,6 @@ section.update-msgs
         &.summer
           background: #60B5CC
           color: #FFF
-
-    ul.usage-selector
-      label          
-        svg
-          width: auto
-          height: 9rem
-          border-radius: 0.5rem
 
 footer.site-footer
   position: absolute

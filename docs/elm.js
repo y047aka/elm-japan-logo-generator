@@ -4792,7 +4792,7 @@ var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Main$init = function (_n0) {
 	return _Utils_Tuple2(
-		{event: author$project$LogoImage$Meetup, pattern: author$project$LogoImage$Original, usage: author$project$LogoImage$Logo},
+		{event: author$project$LogoImage$Meetup, pattern: author$project$LogoImage$Original, subtitle: 'in Summer', usage: author$project$LogoImage$Logo},
 		elm$core$Platform$Cmd$none);
 };
 var author$project$LogoImage$Connpass = {$: 'Connpass'};
@@ -4830,6 +4830,13 @@ var author$project$Main$update = F2(
 					default:
 						return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 				}
+			case 'EventInInput':
+				var value = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{subtitle: value}),
+					elm$core$Platform$Cmd$none);
 			case 'UsageChanged':
 				var value = msg.a;
 				switch (value) {
@@ -5418,7 +5425,7 @@ var author$project$LogoImage$svgBanner = function (preference) {
 							]),
 						_List_fromArray(
 							[
-								elm$html$Html$text('in Summer')
+								elm$html$Html$text(preference.subtitle)
 							]))
 					]))
 			]));
@@ -5602,7 +5609,7 @@ var author$project$LogoImage$svgLogo = function (preference) {
 							]),
 						_List_fromArray(
 							[
-								elm$html$Html$text('in Summer')
+								elm$html$Html$text(preference.subtitle)
 							]))
 					]))
 			]));
@@ -5628,6 +5635,63 @@ var author$project$Main$viewPreview = function (model) {
 						return author$project$LogoImage$svgBanner(model);
 				}
 			}()
+			]));
+};
+var author$project$Main$EventInInput = function (a) {
+	return {$: 'EventInInput', a: a};
+};
+var elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 'MayStopPropagation', a: a};
+};
+var elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			elm$virtual_dom$VirtualDom$on,
+			event,
+			elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			elm$json$Json$Decode$map,
+			elm$html$Html$Events$alwaysStop,
+			A2(elm$json$Json$Decode$map, tagger, elm$html$Html$Events$targetValue)));
+};
+var author$project$Main$viewSubtitleForm = function (model) {
+	return A2(
+		elm$html$Html$ul,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('in-form')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$li,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$label,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$input,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$type_('text'),
+										elm$html$Html$Attributes$value(model.subtitle),
+										elm$html$Html$Events$onInput(author$project$Main$EventInInput)
+									]),
+								_List_Nil)
+							]))
+					]))
 			]));
 };
 var author$project$Main$UsageChanged = function (a) {
@@ -5724,6 +5788,20 @@ var author$project$Main$view = function (model) {
 												elm$html$Html$text('Event')
 											])),
 										author$project$Main$viewEventSelector(model)
+									])),
+								A2(
+								elm$html$Html$nav,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$h1,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Subtitle')
+											])),
+										author$project$Main$viewSubtitleForm(model)
 									])),
 								A2(
 								elm$html$Html$nav,

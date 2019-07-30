@@ -53,9 +53,29 @@ section.update-msgs nav ul li + li {
 }
 section.update-msgs nav ul li label {
   display: block;
+  cursor: pointer;
 }
-section.update-msgs nav ul li label input {
+section.update-msgs nav ul li label input[type=text] {
+  display: block;
+  width: 13rem;
+  height: 9rem;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  font-weight: 600;
+  outline: none;
+  color: #666;
+  border: none;
+  border-radius: 0.5rem;
+}
+section.update-msgs nav ul li label input[type=radio] {
   display: none;
+}
+section.update-msgs nav ul li label svg {
+  width: auto;
+  height: 9rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
 }
 section.update-msgs nav ul.event-selector label, section.update-msgs nav ul.pattern-selector label {
   width: 7rem;
@@ -86,11 +106,6 @@ section.update-msgs nav ul.pattern-selector label.option {
 section.update-msgs nav ul.pattern-selector label.summer {
   background: #60B5CC;
   color: #FFF;
-}
-section.update-msgs nav ul.usage-selector label svg {
-  width: auto;
-  height: 9rem;
-  border-radius: 0.5rem;
 }
 
 footer.site-footer {
