@@ -4,7 +4,7 @@ import Browser
 import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node, p, section, text, ul)
 import Html.Attributes exposing (checked, class, name, src, type_, value)
 import Html.Events.Extra exposing (onChange)
-import LogoImage exposing (Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
+import LogoImage exposing (Event(..), Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
 
 main : Program () Model Msg
@@ -22,14 +22,16 @@ main =
 
 
 type alias Model =
-    { usage : Usage
+    { event : Event
+    , usage : Usage
     , pattern : Pattern
     }
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( { usage = Icon
+    ( { event = Meetup
+      , usage = Logo
       , pattern = Original
       }
     , Cmd.none
@@ -41,7 +43,7 @@ init _ =
 
 
 type Msg
-    = NoOp
+    = EventChanged String
     | PatternChanged String
     | UsageChanged String
 
@@ -49,8 +51,19 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
-            ( model, Cmd.none )
+        EventChanged value ->
+            case value of
+                "handsOn" ->
+                    ( { model | event = HandsOn }, Cmd.none )
+
+                "meetup" ->
+                    ( { model | event = Meetup }, Cmd.none )
+
+                "moku*2" ->
+                    ( { model | event = MokuMoku }, Cmd.none )
+
+                _ ->
+                    ( model, Cmd.none )
 
         UsageChanged value ->
             case value of
@@ -98,6 +111,10 @@ view model =
             [ viewPreview model
             , section [ class "update-msgs" ]
                 [ nav []
+                    [ h1 [] [ text "Event" ]
+                    , viewEventSelector model
+                    ]
+                , nav []
                     [ h1 [] [ text "Theme" ]
                     , viewPatternSelector
                     ]
@@ -131,6 +148,32 @@ viewPreview model =
             Connpass ->
                 svgBanner model
         ]
+
+
+viewEventSelector : Model -> Html Msg
+viewEventSelector model =
+    let
+        options =
+            [ { value = "handsOn", text = "HandsOn" }
+            , { value = "meetup", text = "Meetup" }
+            , { value = "moku*2", text = "Moku*2" }
+            ]
+
+        listItem option =
+            li []
+                [ label []
+                    [ input
+                        [ type_ "radio"
+                        , name "eventSetting"
+                        , value option.value
+                        , onChange EventChanged
+                        ]
+                        []
+                    , text option.text
+                    ]
+                ]
+    in
+    ul [ class "event-selector" ] (List.map listItem options)
 
 
 viewUsageSelector : Model -> Html Msg

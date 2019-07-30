@@ -40,64 +40,58 @@ section.update-msgs
       font-size: 1.6rem
       font-weight: 600
 
-    ul.usage-selector
+    ul
       li
         display: inline-block
 
         & + li
-          margin-left: 1rem
+          margin-left: 0.8rem
 
         label
           display: block
 
           input
             display: none
-          
-          svg
-            width: auto
-            height: 9.5rem
-            border-radius: 0.5rem
+
+    ul.event-selector, ul.pattern-selector
+      label
+        width: 7rem
+        height: 9rem
+        box-sizing: border-box
+        padding: 4rem 0
+        text-align: center
+        font-weight: 600
+        background: #FFF
+        border-radius: 0.5rem
 
     ul.pattern-selector
-      li
-        display: inline-block
-
-        & + li
-          margin-left: 1rem
-
-        label
-          display: block
-          width: 7rem
-          height: 9.5rem
-          box-sizing: border-box
-          padding: 4rem 0
-          text-align: center
-          font-weight: 600
+      label
+        &.original
           background: #FFF
+          color: #60B5CC
+
+        &.new
+          background: rgb(18, 147, 216)
+          color: #FFF
+
+        &.prime
+          background: hsl(345, 100%, 37%)
+          color: #FFF
+
+        &.option
+          background: #FFF
+          color: hsl(345, 100%, 37%)
+
+        &.summer
+          background: #60B5CC
+          color: #FFF
+
+    ul.usage-selector
+      label          
+        svg
+          width: auto
+          height: 9rem
           border-radius: 0.5rem
-
-          &.original
-            background: #FFF
-            color: #60B5CC
-
-          &.new
-            background: rgb(18, 147, 216)
-            color: #FFF
-
-          &.prime
-            background: hsl(345, 100%, 37%)
-            color: #FFF
-
-          &.option
-            background: #FFF
-            color: hsl(345, 100%, 37%)
-
-          &.summer
-            background: #60B5CC
-            color: #FFF
-
-          input
-            display: none
 
 footer.site-footer
   position: absolute

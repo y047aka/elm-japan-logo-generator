@@ -45,33 +45,21 @@ section.update-msgs nav h1 {
   font-size: 1.6rem;
   font-weight: 600;
 }
-section.update-msgs nav ul.usage-selector li {
+section.update-msgs nav ul li {
   display: inline-block;
 }
-section.update-msgs nav ul.usage-selector li + li {
-  margin-left: 1rem;
+section.update-msgs nav ul li + li {
+  margin-left: 0.8rem;
 }
-section.update-msgs nav ul.usage-selector li label {
+section.update-msgs nav ul li label {
   display: block;
 }
-section.update-msgs nav ul.usage-selector li label input {
+section.update-msgs nav ul li label input {
   display: none;
 }
-section.update-msgs nav ul.usage-selector li label svg {
-  width: auto;
-  height: 9.5rem;
-  border-radius: 0.5rem;
-}
-section.update-msgs nav ul.pattern-selector li {
-  display: inline-block;
-}
-section.update-msgs nav ul.pattern-selector li + li {
-  margin-left: 1rem;
-}
-section.update-msgs nav ul.pattern-selector li label {
-  display: block;
+section.update-msgs nav ul.event-selector label, section.update-msgs nav ul.pattern-selector label {
   width: 7rem;
-  height: 9.5rem;
+  height: 9rem;
   box-sizing: border-box;
   padding: 4rem 0;
   text-align: center;
@@ -79,28 +67,30 @@ section.update-msgs nav ul.pattern-selector li label {
   background: #FFF;
   border-radius: 0.5rem;
 }
-section.update-msgs nav ul.pattern-selector li label.original {
+section.update-msgs nav ul.pattern-selector label.original {
   background: #FFF;
   color: #60B5CC;
 }
-section.update-msgs nav ul.pattern-selector li label.new {
+section.update-msgs nav ul.pattern-selector label.new {
   background: #1293d8;
   color: #FFF;
 }
-section.update-msgs nav ul.pattern-selector li label.prime {
+section.update-msgs nav ul.pattern-selector label.prime {
   background: #bd002f;
   color: #FFF;
 }
-section.update-msgs nav ul.pattern-selector li label.option {
+section.update-msgs nav ul.pattern-selector label.option {
   background: #FFF;
   color: #bd002f;
 }
-section.update-msgs nav ul.pattern-selector li label.summer {
+section.update-msgs nav ul.pattern-selector label.summer {
   background: #60B5CC;
   color: #FFF;
 }
-section.update-msgs nav ul.pattern-selector li label input {
-  display: none;
+section.update-msgs nav ul.usage-selector label svg {
+  width: auto;
+  height: 9rem;
+  border-radius: 0.5rem;
 }
 
 footer.site-footer {

@@ -4310,7 +4310,8 @@ function _Browser_load(url)
 		}
 	}));
 }
-var author$project$LogoImage$Icon = {$: 'Icon'};
+var author$project$LogoImage$Logo = {$: 'Logo'};
+var author$project$LogoImage$Meetup = {$: 'Meetup'};
 var author$project$LogoImage$Original = {$: 'Original'};
 var elm$core$Basics$False = {$: 'False'};
 var elm$core$Basics$True = {$: 'True'};
@@ -4791,7 +4792,7 @@ var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Main$init = function (_n0) {
 	return _Utils_Tuple2(
-		{pattern: author$project$LogoImage$Original, usage: author$project$LogoImage$Icon},
+		{event: author$project$LogoImage$Meetup, pattern: author$project$LogoImage$Original, usage: author$project$LogoImage$Logo},
 		elm$core$Platform$Cmd$none);
 };
 var author$project$LogoImage$Connpass = {$: 'Connpass'};
@@ -4799,12 +4800,36 @@ var author$project$LogoImage$Custom = F2(
 	function (a, b) {
 		return {$: 'Custom', a: a, b: b};
 	});
-var author$project$LogoImage$Logo = {$: 'Logo'};
+var author$project$LogoImage$HandsOn = {$: 'HandsOn'};
+var author$project$LogoImage$Icon = {$: 'Icon'};
+var author$project$LogoImage$MokuMoku = {$: 'MokuMoku'};
 var author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
-			case 'NoOp':
-				return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
+			case 'EventChanged':
+				var value = msg.a;
+				switch (value) {
+					case 'handsOn':
+						return _Utils_Tuple2(
+							_Utils_update(
+								model,
+								{event: author$project$LogoImage$HandsOn}),
+							elm$core$Platform$Cmd$none);
+					case 'meetup':
+						return _Utils_Tuple2(
+							_Utils_update(
+								model,
+								{event: author$project$LogoImage$Meetup}),
+							elm$core$Platform$Cmd$none);
+					case 'moku*2':
+						return _Utils_Tuple2(
+							_Utils_update(
+								model,
+								{event: author$project$LogoImage$MokuMoku}),
+							elm$core$Platform$Cmd$none);
+					default:
+						return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
+				}
 			case 'UsageChanged':
 				var value = msg.a;
 				switch (value) {
@@ -4935,8 +4960,8 @@ var author$project$Main$siteHeader = A2(
 					elm$html$Html$text('Elm Japan Logo Generator')
 				]))
 		]));
-var author$project$Main$PatternChanged = function (a) {
-	return {$: 'PatternChanged', a: a};
+var author$project$Main$EventChanged = function (a) {
+	return {$: 'EventChanged', a: a};
 };
 var elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
@@ -5041,6 +5066,49 @@ var elm_community$html_extra$Html$Events$Extra$onChange = function (onChangeActi
 		elm$html$Html$Events$on,
 		'change',
 		A2(elm$json$Json$Decode$map, onChangeAction, elm$html$Html$Events$targetValue));
+};
+var author$project$Main$viewEventSelector = function (model) {
+	var options = _List_fromArray(
+		[
+			{text: 'HandsOn', value: 'handsOn'},
+			{text: 'Meetup', value: 'meetup'},
+			{text: 'Moku*2', value: 'moku*2'}
+		]);
+	var listItem = function (option) {
+		return A2(
+			elm$html$Html$li,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$label,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$input,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$type_('radio'),
+									elm$html$Html$Attributes$name('eventSetting'),
+									elm$html$Html$Attributes$value(option.value),
+									elm_community$html_extra$Html$Events$Extra$onChange(author$project$Main$EventChanged)
+								]),
+							_List_Nil),
+							elm$html$Html$text(option.text)
+						]))
+				]));
+	};
+	return A2(
+		elm$html$Html$ul,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('event-selector')
+			]),
+		A2(elm$core$List$map, listItem, options));
+};
+var author$project$Main$PatternChanged = function (a) {
+	return {$: 'PatternChanged', a: a};
 };
 var author$project$Main$viewPatternSelector = function () {
 	var options = _List_fromArray(
@@ -5223,22 +5291,22 @@ var author$project$LogoImage$svgBanner = function (preference) {
 		elm$core$Basics$round(500 * 2.444));
 	var h = '500';
 	var colors = function () {
-		var _n1 = preference.pattern;
-		if (_n1.$ === 'Original') {
+		var _n2 = preference.pattern;
+		if (_n2.$ === 'Original') {
 			return {blue: '#60B5CC', green: '#7FD13B', navy: '#5A6378', orange: '#F0AD00'};
 		} else {
-			var bgColor = _n1.a;
-			var fillColor = _n1.b;
+			var bgColor = _n2.a;
+			var fillColor = _n2.b;
 			return A4(author$project$LogoImage$Colors, fillColor, fillColor, fillColor, fillColor);
 		}
 	}();
 	var backgroundColor = function () {
-		var _n0 = preference.pattern;
-		if (_n0.$ === 'Original') {
+		var _n1 = preference.pattern;
+		if (_n1.$ === 'Original') {
 			return '#FFF';
 		} else {
-			var bgColor = _n0.a;
-			var fillColor = _n0.b;
+			var bgColor = _n1.a;
+			var fillColor = _n1.b;
 			return bgColor;
 		}
 	}();
@@ -5296,18 +5364,50 @@ var author$project$LogoImage$svgBanner = function (preference) {
 							[
 								elm$html$Html$text('Elm Japan 2019')
 							])),
-						A2(
-						elm$svg$Svg$text_,
-						_List_fromArray(
-							[
-								elm$svg$Svg$Attributes$x('440'),
-								elm$svg$Svg$Attributes$y('160'),
-								elm$svg$Svg$Attributes$fontSize('105')
-							]),
-						_List_fromArray(
-							[
-								elm$html$Html$text('Meetup')
-							])),
+						function () {
+						var _n0 = preference.event;
+						switch (_n0.$) {
+							case 'HandsOn':
+								return A2(
+									elm$svg$Svg$text_,
+									_List_fromArray(
+										[
+											elm$svg$Svg$Attributes$x('442'),
+											elm$svg$Svg$Attributes$y('160'),
+											elm$svg$Svg$Attributes$fontSize('85')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('HandsOn')
+										]));
+							case 'Meetup':
+								return A2(
+									elm$svg$Svg$text_,
+									_List_fromArray(
+										[
+											elm$svg$Svg$Attributes$x('440'),
+											elm$svg$Svg$Attributes$y('160'),
+											elm$svg$Svg$Attributes$fontSize('105')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('Meetup')
+										]));
+							default:
+								return A2(
+									elm$svg$Svg$text_,
+									_List_fromArray(
+										[
+											elm$svg$Svg$Attributes$x('440'),
+											elm$svg$Svg$Attributes$y('160'),
+											elm$svg$Svg$Attributes$fontSize('103')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('Moku*2')
+										]));
+						}
+					}(),
 						A2(
 						elm$svg$Svg$text_,
 						_List_fromArray(
@@ -5375,22 +5475,22 @@ var author$project$LogoImage$svgLogo = function (preference) {
 		elm$core$Basics$round(500 * 1.4727));
 	var h = '500';
 	var colors = function () {
-		var _n1 = preference.pattern;
-		if (_n1.$ === 'Original') {
+		var _n2 = preference.pattern;
+		if (_n2.$ === 'Original') {
 			return {blue: '#60B5CC', green: '#7FD13B', navy: '#5A6378', orange: '#F0AD00'};
 		} else {
-			var bgColor = _n1.a;
-			var fillColor = _n1.b;
+			var bgColor = _n2.a;
+			var fillColor = _n2.b;
 			return A4(author$project$LogoImage$Colors, fillColor, fillColor, fillColor, fillColor);
 		}
 	}();
 	var backgroundColor = function () {
-		var _n0 = preference.pattern;
-		if (_n0.$ === 'Original') {
+		var _n1 = preference.pattern;
+		if (_n1.$ === 'Original') {
 			return '#FFF';
 		} else {
-			var bgColor = _n0.a;
-			var fillColor = _n0.b;
+			var bgColor = _n1.a;
+			var fillColor = _n1.b;
 			return bgColor;
 		}
 	}();
@@ -5448,18 +5548,50 @@ var author$project$LogoImage$svgLogo = function (preference) {
 							[
 								elm$html$Html$text('Elm Japan 2019')
 							])),
-						A2(
-						elm$svg$Svg$text_,
-						_List_fromArray(
-							[
-								elm$svg$Svg$Attributes$x('320'),
-								elm$svg$Svg$Attributes$y('300'),
-								elm$svg$Svg$Attributes$fontSize('115')
-							]),
-						_List_fromArray(
-							[
-								elm$html$Html$text('Meetup')
-							])),
+						function () {
+						var _n0 = preference.event;
+						switch (_n0.$) {
+							case 'HandsOn':
+								return A2(
+									elm$svg$Svg$text_,
+									_List_fromArray(
+										[
+											elm$svg$Svg$Attributes$x('322'),
+											elm$svg$Svg$Attributes$y('300'),
+											elm$svg$Svg$Attributes$fontSize('93')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('HandsOn')
+										]));
+							case 'Meetup':
+								return A2(
+									elm$svg$Svg$text_,
+									_List_fromArray(
+										[
+											elm$svg$Svg$Attributes$x('320'),
+											elm$svg$Svg$Attributes$y('300'),
+											elm$svg$Svg$Attributes$fontSize('115')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('Meetup')
+										]));
+							default:
+								return A2(
+									elm$svg$Svg$text_,
+									_List_fromArray(
+										[
+											elm$svg$Svg$Attributes$x('320'),
+											elm$svg$Svg$Attributes$y('300'),
+											elm$svg$Svg$Attributes$fontSize('112')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('Moku*2')
+										]));
+						}
+					}(),
 						A2(
 						elm$svg$Svg$text_,
 						_List_fromArray(
@@ -5579,6 +5711,20 @@ var author$project$Main$view = function (model) {
 							]),
 						_List_fromArray(
 							[
+								A2(
+								elm$html$Html$nav,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$h1,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Event')
+											])),
+										author$project$Main$viewEventSelector(model)
+									])),
 								A2(
 								elm$html$Html$nav,
 								_List_Nil,

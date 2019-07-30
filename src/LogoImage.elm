@@ -1,4 +1,4 @@
-module LogoImage exposing (Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
+module LogoImage exposing (Event(..), Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
 import Html exposing (text)
 import Svg exposing (Svg, g, polygon, rect, svg, text_)
@@ -10,9 +10,16 @@ import Svg.Attributes exposing (fill, fontFamily, fontSize, fontWeight, height, 
 
 
 type alias Preference =
-    { usage : Usage
+    { event : Event
+    , usage : Usage
     , pattern : Pattern
     }
+
+
+type Event
+    = HandsOn
+    | Meetup
+    | MokuMoku
 
 
 type Usage
@@ -171,7 +178,15 @@ svgLogo preference =
         , g
             [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
             [ text_ [ x "325", y "195", fontSize "54" ] [ text "Elm Japan 2019" ]
-            , text_ [ x "320", y "300", fontSize "115" ] [ text "Meetup" ]
+            , case preference.event of
+                HandsOn ->
+                    text_ [ x "322", y "300", fontSize "93" ] [ text "HandsOn" ]
+
+                Meetup ->
+                    text_ [ x "320", y "300", fontSize "115" ] [ text "Meetup" ]
+
+                MokuMoku ->
+                    text_ [ x "320", y "300", fontSize "112" ] [ text "Moku*2" ]
             , text_ [ x "327", y "340", fontSize "35" ] [ text "in Summer" ]
             ]
         ]
@@ -221,10 +236,15 @@ svgBanner preference =
         , g
             [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
             [ text_ [ x "445", y "60", fontSize "49" ] [ text "Elm Japan 2019" ]
-            , text_ [ x "440", y "160", fontSize "105" ] [ text "Meetup" ]
+            , case preference.event of
+                HandsOn ->
+                    text_ [ x "442", y "160", fontSize "85" ] [ text "HandsOn" ]
 
-            -- , text_ [ x "440", y "160", fontSize "103" ] [ text "Moku*2" ]
-            -- , text_ [ x "442", y "160", fontSize "85" ] [ text "HandsOn" ]
+                Meetup ->
+                    text_ [ x "440", y "160", fontSize "105" ] [ text "Meetup" ]
+
+                MokuMoku ->
+                    text_ [ x "440", y "160", fontSize "103" ] [ text "Moku*2" ]
             , text_ [ x "447", y "195", fontSize "30" ] [ text "in Summer" ]
 
             -- , text_ [ x "447", y "195", fontSize "30" ] [ text "in Kobe" ]
