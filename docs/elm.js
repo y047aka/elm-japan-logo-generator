@@ -5572,12 +5572,41 @@ var author$project$Main$view = function (model) {
 					[
 						author$project$Main$viewPreview(model),
 						A2(
-						elm$html$Html$nav,
-						_List_Nil,
+						elm$html$Html$section,
 						_List_fromArray(
 							[
-								author$project$Main$viewPatternSelector,
-								author$project$Main$viewUsageSelector(model)
+								elm$html$Html$Attributes$class('update-msgs')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$nav,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$h1,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Theme')
+											])),
+										author$project$Main$viewPatternSelector
+									])),
+								A2(
+								elm$html$Html$nav,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$h1,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Size')
+											])),
+										author$project$Main$viewUsageSelector(model)
+									]))
 							]))
 					])),
 				author$project$Main$siteFooter

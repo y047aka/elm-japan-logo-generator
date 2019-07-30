@@ -27,73 +27,79 @@ section.preview
   text-align: center
   border-bottom: solid 0.1rem #999
 
-nav
+section.update-msgs
   display: grid
   padding: 3rem 1rem
   grid-auto-flow: column
   justify-content: center
   column-gap: 5rem
 
-  ul.usage-selector
-    li
-      display: inline-block
+  nav
+    h1
+      padding: 0 0 0.5rem
+      font-size: 1.6rem
+      font-weight: 600
 
-      & + li
-        margin-left: 1rem
+    ul.usage-selector
+      li
+        display: inline-block
 
-      label
-        display: block
+        & + li
+          margin-left: 1rem
 
-        input
-          display: none
-        
-        svg
-          width: auto
+        label
+          display: block
+
+          input
+            display: none
+          
+          svg
+            width: auto
+            height: 9.5rem
+            border-radius: 0.5rem
+
+    ul.pattern-selector
+      li
+        display: inline-block
+
+        label
+          display: block
+          width: 7rem
           height: 9.5rem
-          border-radius: 0.5rem
-
-  ul.pattern-selector
-    li
-      display: inline-block
-
-      label
-        display: block
-        width: 7rem
-        height: 9.5rem
-        box-sizing: border-box
-        padding: 4rem 0
-        text-align: center
-        font-weight: 600
-        background: #FFF
-
-        &.original
+          box-sizing: border-box
+          padding: 4rem 0
+          text-align: center
+          font-weight: 600
           background: #FFF
-          color: #60B5CC
 
-        &.new
-          background: rgb(18, 147, 216)
-          color: #FFF
+          &.original
+            background: #FFF
+            color: #60B5CC
 
-        &.prime
-          background: hsl(345, 100%, 37%)
-          color: #FFF
+          &.new
+            background: rgb(18, 147, 216)
+            color: #FFF
 
-        &.option
-          background: #FFF
-          color: hsl(345, 100%, 37%)
+          &.prime
+            background: hsl(345, 100%, 37%)
+            color: #FFF
 
-        &.summer
-          background: #60B5CC
-          color: #FFF
+          &.option
+            background: #FFF
+            color: hsl(345, 100%, 37%)
 
-        input
-          display: none
-        
-      &:first-child > label
-        border-radius: 0.5rem 0 0 0.5rem
+          &.summer
+            background: #60B5CC
+            color: #FFF
 
-      &:last-child > label
-        border-radius: 0 0.5rem 0.5rem 0
+          input
+            display: none
+          
+        &:first-child > label
+          border-radius: 0.5rem 0 0 0.5rem
+
+        &:last-child > label
+          border-radius: 0 0.5rem 0.5rem 0
 
 footer.site-footer
   position: absolute

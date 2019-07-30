@@ -96,9 +96,15 @@ view model =
         , node "main"
             []
             [ viewPreview model
-            , nav []
-                [ viewPatternSelector
-                , viewUsageSelector model
+            , section [ class "update-msgs" ]
+                [ nav []
+                    [ h1 [] [ text "Theme" ]
+                    , viewPatternSelector
+                    ]
+                , nav []
+                    [ h1 [] [ text "Size" ]
+                    , viewUsageSelector model
+                    ]
                 ]
             ]
         , siteFooter

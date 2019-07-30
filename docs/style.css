@@ -33,34 +33,39 @@ section.preview {
   border-bottom: solid 0.1rem #999;
 }
 
-nav {
+section.update-msgs {
   display: grid;
   padding: 3rem 1rem;
   grid-auto-flow: column;
   justify-content: center;
   column-gap: 5rem;
 }
-nav ul.usage-selector li {
+section.update-msgs nav h1 {
+  padding: 0 0 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+section.update-msgs nav ul.usage-selector li {
   display: inline-block;
 }
-nav ul.usage-selector li + li {
+section.update-msgs nav ul.usage-selector li + li {
   margin-left: 1rem;
 }
-nav ul.usage-selector li label {
+section.update-msgs nav ul.usage-selector li label {
   display: block;
 }
-nav ul.usage-selector li label input {
+section.update-msgs nav ul.usage-selector li label input {
   display: none;
 }
-nav ul.usage-selector li label svg {
+section.update-msgs nav ul.usage-selector li label svg {
   width: auto;
   height: 9.5rem;
   border-radius: 0.5rem;
 }
-nav ul.pattern-selector li {
+section.update-msgs nav ul.pattern-selector li {
   display: inline-block;
 }
-nav ul.pattern-selector li label {
+section.update-msgs nav ul.pattern-selector li label {
   display: block;
   width: 7rem;
   height: 9.5rem;
@@ -70,33 +75,33 @@ nav ul.pattern-selector li label {
   font-weight: 600;
   background: #FFF;
 }
-nav ul.pattern-selector li label.original {
+section.update-msgs nav ul.pattern-selector li label.original {
   background: #FFF;
   color: #60B5CC;
 }
-nav ul.pattern-selector li label.new {
+section.update-msgs nav ul.pattern-selector li label.new {
   background: #1293d8;
   color: #FFF;
 }
-nav ul.pattern-selector li label.prime {
+section.update-msgs nav ul.pattern-selector li label.prime {
   background: #bd002f;
   color: #FFF;
 }
-nav ul.pattern-selector li label.option {
+section.update-msgs nav ul.pattern-selector li label.option {
   background: #FFF;
   color: #bd002f;
 }
-nav ul.pattern-selector li label.summer {
+section.update-msgs nav ul.pattern-selector li label.summer {
   background: #60B5CC;
   color: #FFF;
 }
-nav ul.pattern-selector li label input {
+section.update-msgs nav ul.pattern-selector li label input {
   display: none;
 }
-nav ul.pattern-selector li:first-child > label {
+section.update-msgs nav ul.pattern-selector li:first-child > label {
   border-radius: 0.5rem 0 0 0.5rem;
 }
-nav ul.pattern-selector li:last-child > label {
+section.update-msgs nav ul.pattern-selector li:last-child > label {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
