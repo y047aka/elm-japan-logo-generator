@@ -4,7 +4,7 @@ import Browser
 import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node, p, section, text, ul)
 import Html.Attributes exposing (checked, class, name, src, type_, value)
 import Html.Events.Extra exposing (onChange)
-import LogoImage exposing (LogoImage, Pattern(..), Usage(..), svgBanner, svgIcon, svgLogo)
+import LogoImage exposing (Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
 
 main : Program () Model Msg

@@ -1,4 +1,4 @@
-module LogoImage exposing (LogoImage, Pattern(..), Usage(..), svgBanner, svgIcon, svgLogo)
+module LogoImage exposing (Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
 import Html exposing (text)
 import Svg exposing (Svg, g, polygon, rect, svg, text_)
@@ -9,7 +9,7 @@ import Svg.Attributes exposing (fill, fontFamily, fontSize, fontWeight, height, 
 -- TYPE
 
 
-type alias LogoImage =
+type alias Preference =
     { usage : Usage
     , pattern : Pattern
     }
@@ -34,7 +34,7 @@ type alias Colors =
     }
 
 
-japanArchipelago : LogoImage -> Svg msg
+japanArchipelago : Preference -> Svg msg
 japanArchipelago preference =
     let
         transformSetting =
@@ -95,7 +95,7 @@ japanArchipelago preference =
         ]
 
 
-svgIcon : LogoImage -> Svg msg
+svgIcon : Preference -> Svg msg
 svgIcon preference =
     let
         w =
@@ -127,7 +127,7 @@ svgIcon preference =
         ]
 
 
-svgLogo : LogoImage -> Svg msg
+svgLogo : Preference -> Svg msg
 svgLogo preference =
     let
         w =
@@ -177,7 +177,7 @@ svgLogo preference =
         ]
 
 
-svgBanner : LogoImage -> Svg msg
+svgBanner : Preference -> Svg msg
 svgBanner preference =
     let
         w =
