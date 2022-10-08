@@ -42,6 +42,24 @@ type alias Colors =
     }
 
 
+patternToColors : Pattern -> ( String, Colors )
+patternToColors pattern =
+    case pattern of
+        Original ->
+            ( "#FFF"
+            , { blue = "#60B5CC"
+              , green = "#7FD13B"
+              , navy = "#5A6378"
+              , orange = "#F0AD00"
+              }
+            )
+
+        Custom bgColor fillColor ->
+            ( bgColor
+            , Colors fillColor fillColor fillColor fillColor
+            )
+
+
 japanArchipelago : Preference -> Svg msg
 japanArchipelago preference =
     let
@@ -54,25 +72,8 @@ japanArchipelago preference =
                 _ ->
                     ""
 
-        strokeColor =
-            case preference.pattern of
-                Original ->
-                    "#FFF"
-
-                Custom strColor fillColor ->
-                    strColor
-
-        colors =
-            case preference.pattern of
-                Original ->
-                    { blue = "#60B5CC"
-                    , green = "#7FD13B"
-                    , navy = "#5A6378"
-                    , orange = "#F0AD00"
-                    }
-
-                Custom bgColor fillColor ->
-                    Colors fillColor fillColor fillColor fillColor
+        ( strokeColor, colors ) =
+            patternToColors preference.pattern
     in
     g
         [ strokeWidth "12.5"
@@ -117,7 +118,7 @@ svgIcon preference =
                 Original ->
                     "#FFF"
 
-                Custom bgColor fillColor ->
+                Custom bgColor _ ->
                     bgColor
     in
     svg
@@ -144,25 +145,8 @@ svgLogo preference =
         h =
             "500"
 
-        backgroundColor =
-            case preference.pattern of
-                Original ->
-                    "#FFF"
-
-                Custom bgColor fillColor ->
-                    bgColor
-
-        colors =
-            case preference.pattern of
-                Original ->
-                    { blue = "#60B5CC"
-                    , green = "#7FD13B"
-                    , navy = "#5A6378"
-                    , orange = "#F0AD00"
-                    }
-
-                Custom bgColor fillColor ->
-                    Colors fillColor fillColor fillColor fillColor
+        ( backgroundColor, colors ) =
+            patternToColors preference.pattern
     in
     svg
         [ version "1.1"
@@ -202,25 +186,8 @@ svgBanner preference =
         h =
             "500"
 
-        backgroundColor =
-            case preference.pattern of
-                Original ->
-                    "#FFF"
-
-                Custom bgColor fillColor ->
-                    bgColor
-
-        colors =
-            case preference.pattern of
-                Original ->
-                    { blue = "#60B5CC"
-                    , green = "#7FD13B"
-                    , navy = "#5A6378"
-                    , orange = "#F0AD00"
-                    }
-
-                Custom bgColor fillColor ->
-                    Colors fillColor fillColor fillColor fillColor
+        ( backgroundColor, colors ) =
+            patternToColors preference.pattern
     in
     svg
         [ version "1.1"
