@@ -5,7 +5,7 @@ import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node
 import Html.Attributes exposing (checked, class, name, src, type_, value)
 import Html.Events exposing (onInput)
 import Html.Events.Extra exposing (onChange)
-import LogoImage exposing (Event(..), Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
+import LogoImage exposing (Event(..), Theme(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
 
 main : Program () Model Msg
@@ -26,7 +26,7 @@ type alias Model =
     { event : Event
     , subtitle : String
     , usage : Usage
-    , pattern : Pattern
+    , theme : Theme
     }
 
 
@@ -35,7 +35,7 @@ init _ =
     ( { event = Meetup
       , subtitle = "in Summer"
       , usage = Logo
-      , pattern = Original
+      , theme = Original
       }
     , Cmd.none
     )
@@ -48,7 +48,7 @@ init _ =
 type Msg
     = EventChanged String
     | EventInInput String
-    | PatternChanged String
+    | ThemeChanged String
     | UsageChanged String
 
 
@@ -86,19 +86,19 @@ update msg model =
                 _ ->
                     ( model, Cmd.none )
 
-        PatternChanged value ->
+        ThemeChanged value ->
             case value of
                 "original" ->
-                    ( { model | pattern = Original }, Cmd.none )
+                    ( { model | theme = Original }, Cmd.none )
 
                 "new" ->
-                    ( { model | pattern = Custom "rgb(18, 147, 216)" "#FFF" }, Cmd.none )
+                    ( { model | theme = Custom "rgb(18, 147, 216)" "#FFF" }, Cmd.none )
 
                 "prime" ->
-                    ( { model | pattern = Custom "hsl(345, 100%, 37%)" "#FFF" }, Cmd.none )
+                    ( { model | theme = Custom "hsl(345, 100%, 37%)" "#FFF" }, Cmd.none )
 
                 "option" ->
-                    ( { model | pattern = Custom "#FFF" "hsl(345, 100%, 37%)" }, Cmd.none )
+                    ( { model | theme = Custom "#FFF" "hsl(345, 100%, 37%)" }, Cmd.none )
 
                 _ ->
                     ( model, Cmd.none )
@@ -127,7 +127,7 @@ view model =
                     ]
                 , nav []
                     [ h1 [] [ text "Theme" ]
-                    , viewPatternSelector
+                    , viewThemeSelector
                     ]
                 , nav []
                     [ h1 [] [ text "Size" ]
@@ -229,8 +229,8 @@ viewUsageSelector model =
     ul [ class "usage-selector" ] (List.map listItem options)
 
 
-viewPatternSelector : Html Msg
-viewPatternSelector =
+viewThemeSelector : Html Msg
+viewThemeSelector =
     let
         options =
             [ { value = "new", text = "New" }
@@ -246,14 +246,14 @@ viewPatternSelector =
                         [ type_ "radio"
                         , name "colorSetting"
                         , value option.value
-                        , onChange PatternChanged
+                        , onChange ThemeChanged
                         ]
                         []
                     , text option.text
                     ]
                 ]
     in
-    ul [ class "pattern-selector" ] (List.map listItem options)
+    ul [ class "theme-selector" ] (List.map listItem options)
 
 
 siteFooter : Html Msg

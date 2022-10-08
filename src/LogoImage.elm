@@ -1,4 +1,4 @@
-module LogoImage exposing (Event(..), Pattern(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
+module LogoImage exposing (Event(..), Theme(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
 
 import Html exposing (text)
 import Svg exposing (Svg, g, polygon, rect, svg, text_)
@@ -13,7 +13,7 @@ type alias Preference =
     { event : Event
     , subtitle : String
     , usage : Usage
-    , pattern : Pattern
+    , theme : Theme
     }
 
 
@@ -29,7 +29,7 @@ type Usage
     | Connpass
 
 
-type Pattern
+type Theme
     = Original
     | Custom String String
 
@@ -42,9 +42,9 @@ type alias Colors =
     }
 
 
-patternToColors : Pattern -> ( String, Colors )
-patternToColors pattern =
-    case pattern of
+themeToColors : Theme -> ( String, Colors )
+themeToColors theme =
+    case theme of
         Original ->
             ( "#FFF"
             , { blue = "#60B5CC"
@@ -73,7 +73,7 @@ japanArchipelago preference =
                     ""
 
         ( strokeColor, colors ) =
-            patternToColors preference.pattern
+            themeToColors preference.theme
     in
     g
         [ strokeWidth "12.5"
@@ -114,7 +114,7 @@ svgIcon preference =
             "500"
 
         backgroundColor =
-            case preference.pattern of
+            case preference.theme of
                 Original ->
                     "#FFF"
 
@@ -146,7 +146,7 @@ svgLogo preference =
             "500"
 
         ( backgroundColor, colors ) =
-            patternToColors preference.pattern
+            themeToColors preference.theme
     in
     svg
         [ version "1.1"
@@ -187,7 +187,7 @@ svgBanner preference =
             "500"
 
         ( backgroundColor, colors ) =
-            patternToColors preference.pattern
+            themeToColors preference.theme
     in
     svg
         [ version "1.1"
