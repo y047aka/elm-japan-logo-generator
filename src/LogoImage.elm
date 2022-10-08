@@ -1,4 +1,4 @@
-module LogoImage exposing (Event(..), Theme(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
+module LogoImage exposing (Event(..), Preference, Theme(..), Usage(..), svgBanner, svgIcon, svgLogo)
 
 import Html exposing (text)
 import Svg exposing (Svg, g, polygon, rect, svg, text_)
@@ -31,6 +31,9 @@ type Usage
 
 type Theme
     = Original
+    | New
+    | Prime
+    | Option
     | Custom String String
 
 
@@ -44,6 +47,10 @@ type alias Colors =
 
 themeToColors : Theme -> ( String, Colors )
 themeToColors theme =
+    let
+        red =
+            "hsl(345, 100%, 37%)"
+    in
     case theme of
         Original ->
             ( "#FFF"
@@ -52,6 +59,21 @@ themeToColors theme =
               , navy = "#5A6378"
               , orange = "#F0AD00"
               }
+            )
+
+        New ->
+            ( "rgb(18, 147, 216)"
+            , Colors "#FFF" "#FFF" "#FFF" "#FFF"
+            )
+
+        Prime ->
+            ( red
+            , Colors "#FFF" "#FFF" "#FFF" "#FFF"
+            )
+
+        Option ->
+            ( "#FFF"
+            , Colors red red red red
             )
 
         Custom bgColor fillColor ->
@@ -113,13 +135,8 @@ svgIcon preference =
         h =
             "500"
 
-        backgroundColor =
-            case preference.theme of
-                Original ->
-                    "#FFF"
-
-                Custom bgColor _ ->
-                    bgColor
+        ( backgroundColor, _ ) =
+            themeToColors preference.theme
     in
     svg
         [ version "1.1"

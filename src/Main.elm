@@ -5,7 +5,7 @@ import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node
 import Html.Attributes exposing (checked, class, name, src, type_, value)
 import Html.Events exposing (onInput)
 import Html.Events.Extra exposing (onChange)
-import LogoImage exposing (Event(..), Theme(..), Preference, Usage(..), svgBanner, svgIcon, svgLogo)
+import LogoImage exposing (Event(..), Preference, Theme(..), Usage(..), svgBanner, svgIcon, svgLogo)
 
 
 main : Program () Model Msg
@@ -87,21 +87,26 @@ update msg model =
                     ( model, Cmd.none )
 
         ThemeChanged value ->
-            case value of
-                "original" ->
-                    ( { model | theme = Original }, Cmd.none )
+            ( { model
+                | theme =
+                    case value of
+                        "original" ->
+                            Original
 
-                "new" ->
-                    ( { model | theme = Custom "rgb(18, 147, 216)" "#FFF" }, Cmd.none )
+                        "new" ->
+                            New
 
-                "prime" ->
-                    ( { model | theme = Custom "hsl(345, 100%, 37%)" "#FFF" }, Cmd.none )
+                        "prime" ->
+                            Prime
 
-                "option" ->
-                    ( { model | theme = Custom "#FFF" "hsl(345, 100%, 37%)" }, Cmd.none )
+                        "option" ->
+                            Option
 
-                _ ->
-                    ( model, Cmd.none )
+                        _ ->
+                            model.theme
+              }
+            , Cmd.none
+            )
 
 
 
