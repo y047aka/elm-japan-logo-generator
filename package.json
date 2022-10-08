@@ -15,13 +15,11 @@
     "compile": "npm-run-all -p compile:*",
     "minify:elm": "google-closure-compiler --js=docs/elm.optimized.js --js_output_file=docs/elm.js && rimraf docs/elm.optimized.js",
     "build": "npm-run-all -s clean compile minify:elm",
-    "start": "npm-run-all -s clean watch",
-    "test": "elm-test"
+    "start": "npm-run-all -s clean watch"
   },
   "dependencies": {
     "cpx2": "^4.2.0",
     "elm": "^0.19.1-5",
-    "elm-test": "^0.19.1-revision9",
     "google-closure-compiler": "^20221004.0.0",
     "npm-run-all2": "^6.0.2",
     "rimraf": "^3.0.2",
