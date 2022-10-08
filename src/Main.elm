@@ -1,11 +1,11 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, footer, h1, header, img, input, label, li, nav, node, p, section, text, ul)
-import Html.Attributes exposing (checked, class, name, src, type_, value)
+import Html exposing (Html, footer, h1, header, input, label, li, nav, node, p, section, text, ul)
+import Html.Attributes exposing (class, name, type_, value)
 import Html.Events exposing (onInput)
 import Html.Events.Extra exposing (onChange)
-import LogoImage exposing (Event(..), Preference, Theme(..), Usage(..), svgBanner, svgIcon, svgLogo)
+import LogoImage exposing (Event(..), Theme(..), Usage(..), svgBanner, svgIcon, svgLogo)
 
 
 main : Program () Model Msg
@@ -167,7 +167,7 @@ viewPreview model =
 
 
 viewEventSelector : Model -> Html Msg
-viewEventSelector model =
+viewEventSelector _ =
     let
         options =
             [ { value = "handsOn", text = "HandsOn" }
