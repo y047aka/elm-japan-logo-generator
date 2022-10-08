@@ -178,7 +178,7 @@ svgLogo preference =
             [ japanArchipelago preference ]
         , g
             [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
-            [ text_ [ x "325", y "195", fontSize "54" ] [ text "Elm Japan 2019" ]
+            [ text_ [ x "325", y "195", fontSize "54" ] [ text "Elm Japan 2022" ]
             , case preference.event of
                 HandsOn ->
                     text_ [ x "322", y "300", fontSize "93" ] [ text "HandsOn" ]
@@ -236,7 +236,7 @@ svgBanner preference =
             [ japanArchipelago preference ]
         , g
             [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
-            [ text_ [ x "445", y "60", fontSize "49" ] [ text "Elm Japan 2019" ]
+            [ text_ [ x "445", y "60", fontSize "49" ] [ text "Elm Japan 2022" ]
             , case preference.event of
                 HandsOn ->
                     text_ [ x "442", y "160", fontSize "85" ] [ text "HandsOn" ]

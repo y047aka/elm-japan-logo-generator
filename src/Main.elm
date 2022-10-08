@@ -259,5 +259,5 @@ viewPatternSelector =
 siteFooter : Html Msg
 siteFooter =
     footer [ class "site-footer" ]
-        [ p [ class "copyright" ] [ text "© 2019 y047aka" ]
+        [ p [ class "copyright" ] [ text "© 2022 y047aka" ]
         ]
