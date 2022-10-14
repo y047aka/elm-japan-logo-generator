@@ -212,24 +212,21 @@ svgBanner preference =
         , height h
         , viewBox ("0 0 " ++ w ++ " " ++ h)
         ]
-        [ rect
-            [ fill backgroundColor, x "0", y "0", width w, height h ]
-            []
-        , g
-            [ transform "translate(440 210) scale(0.6)" ]
-            [ japanArchipelago preference ]
-        , g
-            [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
-            [ text_ [ x "445", y "60", fontSize "49" ] [ text "Elm Japan 2022" ]
+        [ rect [ fill backgroundColor, x "0", y "0", width w, height h ] []
+
+        -- , rect [ fill "none", stroke "#999", x "361", y "0", width "500", height "500" ] []
+        , g [ transform "translate(530 180) scale(0.55)" ] [ japanArchipelago preference ]
+        , g [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
+            [ text_ [ x "470", y "120", fontSize "55" ] [ text "Elm-jp 2022" ]
             , case preference.event of
                 HandsOn ->
-                    text_ [ x "442", y "160", fontSize "85" ] [ text "HandsOn" ]
+                    text_ [ x "382", y "250", fontSize "90" ] [ text "HandsOn" ]
 
                 Meetup ->
-                    text_ [ x "440", y "160", fontSize "105" ] [ text "Meetup" ]
+                    text_ [ x "380", y "250", fontSize "105" ] [ text "Meetup" ]
 
                 MokuMoku ->
-                    text_ [ x "440", y "160", fontSize "103" ] [ text "Moku*2" ]
-            , text_ [ x "447", y "195", fontSize "30" ] [ text preference.subtitle ]
+                    text_ [ x "380", y "250", fontSize "105" ] [ text "Moku*2" ]
+            , text_ [ x "385", y "295", fontSize "35" ] [ text preference.subtitle ]
             ]
         ]
