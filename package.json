@@ -18,15 +18,15 @@
     "start": "npm-run-all -s clean watch"
   },
   "dependencies": {
-    "cpx2": "^4.2.0",
+    "cpx2": "^4.2.3",
     "elm": "^0.19.1-5",
-    "google-closure-compiler": "^20221004.0.0",
-    "npm-run-all2": "^6.0.2",
+    "google-closure-compiler": "^20230228.0.0",
+    "npm-run-all2": "^6.0.5",
     "rimraf": "^3.0.2",
-    "sass": "^1.55.0"
+    "sass": "^1.60.0"
   },
   "devDependencies": {
-    "elm-format": "^0.8.5",
+    "elm-format": "^0.8.6",
     "elm-live": "^4.0.2"
   }
 }
