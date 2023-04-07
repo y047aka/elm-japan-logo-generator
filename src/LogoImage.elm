@@ -62,7 +62,7 @@ themeToColors theme =
             )
 
         New ->
-            ( "rgb(18, 147, 216)"
+            ( "hsl(100, 70%, 50%)"
             , Colors "#FFF" "#FFF" "#FFF" "#FFF"
             )
 
@@ -179,7 +179,7 @@ svgLogo preference =
             [ japanArchipelago preference ]
         , g
             [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
-            [ text_ [ x "325", y "195", fontSize "54" ] [ text "Elm Japan 2022" ]
+            [ text_ [ x "325", y "195", fontSize "54" ] [ text "Elm Japan 2023" ]
             , case preference.event of
                 HandsOn ->
                     text_ [ x "322", y "300", fontSize "93" ] [ text "HandsOn" ]
@@ -217,16 +217,16 @@ svgBanner preference =
         -- , rect [ fill "none", stroke "#999", x "361", y "0", width "500", height "500" ] []
         , g [ transform "translate(530 180) scale(0.55)" ] [ japanArchipelago preference ]
         , g [ fontFamily "source sans pro", fontWeight "600", fill colors.blue ]
-            [ text_ [ x "470", y "120", fontSize "55" ] [ text "Elm-jp 2022" ]
+            [ text_ [ x "470", y "120", fontSize "55" ] [ text "Elm-jp 2023" ]
             , case preference.event of
                 HandsOn ->
                     text_ [ x "382", y "250", fontSize "90" ] [ text "HandsOn" ]
 
                 Meetup ->
-                    text_ [ x "380", y "250", fontSize "105" ] [ text "Meetup" ]
+                    text_ [ x "380", y "240", fontSize "105", fontWeight "bold" ] [ text "🗼東京" ]
 
                 MokuMoku ->
                     text_ [ x "380", y "250", fontSize "105" ] [ text "Moku*2" ]
-            , text_ [ x "385", y "295", fontSize "35" ] [ text preference.subtitle ]
+            , text_ [ x "385", y "290", fontSize "30" ] [ text "2023/05/20 13:30 - 15:30" ]
             ]
         ]

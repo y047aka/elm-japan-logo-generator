@@ -33,9 +33,9 @@ type alias Model =
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( { event = Meetup
-      , subtitle = "in Summer"
-      , usage = Logo
-      , theme = Original
+      , subtitle = "init"
+      , usage = Connpass
+      , theme = New
       }
     , Cmd.none
     )
