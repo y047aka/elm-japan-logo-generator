@@ -1,32 +1,15 @@
 {
   "scripts": {
-    "clean": "rimraf docs",
-    "watch:html": "cpx -w src/index.html docs",
-    "watch:assets": "cpx -w \"src/assets/**/*\" docs/assets",
-    "watch:js": "cpx -w src/main.js docs",
-    "watch:elm": "elm-live src/Main.elm --open --start-page=index.html --dir=docs -- --output=docs/elm.js",
-    "watch:sass": "sass --watch src:docs",
-    "watch": "sass src:docs && npm-run-all -p watch:*",
-    "compile:html": "cpx src/index.html docs",
-    "compile:assets": "cpx \"src/assets/**/*\" docs/assets",
-    "compile:js": "cpx src/main.js docs",
-    "compile:elm": "elm make src/Main.elm --optimize --output=docs/elm.optimized.js",
-    "compile:sass": "sass --style=compressed --no-source-map src:docs",
-    "compile": "npm-run-all -p compile:*",
-    "minify:elm": "google-closure-compiler --js=docs/elm.optimized.js --js_output_file=docs/elm.js && rimraf docs/elm.optimized.js",
-    "build": "npm-run-all -s clean compile minify:elm",
-    "start": "npm-run-all -s clean watch"
-  },
-  "dependencies": {
-    "cpx2": "^4.2.3",
-    "elm": "^0.19.1-5",
-    "google-closure-compiler": "^20230228.0.0",
-    "npm-run-all2": "^6.0.5",
-    "rimraf": "^3.0.2",
-    "sass": "^1.60.0"
+    "start": "run-pty % sass --watch src:docs % elm-watch hot % npm run esbuild -- --serve=9000 --servedir=docs",
+    "build": "sass --style=compressed --no-source-map src:docs && elm-watch make --optimize && npm run esbuild -- --minify",
+    "esbuild": "esbuild app.ts --bundle --outdir=docs/build --public-path=/build/"
   },
   "devDependencies": {
+    "elm": "^0.19.1-5",
     "elm-format": "^0.8.6",
-    "elm-live": "^4.0.2"
+    "elm-watch": "^1.1.2",
+    "esbuild": "^0.17.15",
+    "run-pty": "^4.0.3",
+    "sass": "^1.61.0"
   }
 }

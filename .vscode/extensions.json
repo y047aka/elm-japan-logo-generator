@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "esbenp.prettier-vscode",
     "elmTooling.elm-ls-vscode"
   ]
 }

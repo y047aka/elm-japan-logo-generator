@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elm Japan Logo Generator</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <script src="./elm.js"></script>
-    <script src="./main.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="root"></div>
+    <script src="build/main.js"></script>
+    <script>
+      Elm.Main.init({
+        node: document.getElementById("root")
+      });
+    </script>
+  </body>
 </html>
